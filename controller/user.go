@@ -16,7 +16,8 @@ func UserCreate(c *gin.Context) {
 	}
 	err = m.Create()
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		panic(err)
+		// c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 
 	c.JSON(http.StatusOK, gin.H{

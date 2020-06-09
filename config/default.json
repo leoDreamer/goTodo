@@ -1,10 +1,11 @@
 {
   "port": 7001,
+  "log": "./logs/api.log",
   "mysql": {
     "host": "127.0.0.1",
     "port": "3306",
     "db": "login",
-    "username": "",
-    "password": ""
+    "username": "leo",
+    "password": "abc123"
   }
 }
