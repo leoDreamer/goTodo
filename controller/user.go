@@ -1,29 +1,26 @@
 package controller
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"gitlab.com/login/errors"
 	"gitlab.com/login/model"
+	"gitlab.com/login/service"
 )
 
 // UserCreate 创建用户
 func UserCreate(c *gin.Context) {
 	var err error
+
 	m := new(model.User)
 	if err = c.ShouldBindJSON(&m); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		errors.ErrFn(errors.PARAMERR, err)
 	}
 	err = m.Create()
 	if err != nil {
 		panic(err)
-		// c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"status": http.StatusOK,
-		"data":   m,
-	})
+	service.R(c, service.StructToMap(m))
 
 }
 

@@ -7,7 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 	_ "gitlab.com/login/config"
-	"gitlab.com/login/middleware"
 	"gitlab.com/login/router"
 )
 
@@ -18,7 +17,5 @@ func main() {
 
 	// 初始化路由
 	r := router.InitRuter()
-	r.Use(middleware.Exception())
-	r.Use(middleware.Logger())
 	r.Run()
 }

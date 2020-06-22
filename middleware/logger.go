@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"fmt"
+	"io/ioutil"
 
 	"github.com/gin-gonic/gin"
 )
@@ -9,9 +10,8 @@ import (
 // Logger 日志中间件
 func Logger() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		buf := make([]byte, 1024)
-		n, _ := c.Request.Body.Read(buf)
-		fmt.Println("body params: \n %s", string(n))
+		n, _ := ioutil.ReadAll(c.Request.Body)
+		fmt.Println("body params:", string(n))
 		c.Next()
 	}
 }

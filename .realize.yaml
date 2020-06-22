@@ -1,0 +1,25 @@
+settings:
+  legacy:
+    force: false
+    interval: 1s
+server:
+  status: false
+  open: true
+  host: localhost
+  port: 8080
+schema:
+- name: login
+  path: .
+  commands: 
+    run:
+      status: true
+  watcher:
+    extensions:
+    - go
+    paths:
+    - /
+    ignore:
+      paths:
+      - .git
+      - .realize
+      - vendor
